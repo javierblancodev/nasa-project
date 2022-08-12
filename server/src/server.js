@@ -1,5 +1,8 @@
 const http = require('http');
 const app = require('./app');
+
+const { loadPlanetsData } = require('./models/planets.model');
+
 // We can specify the port from the environment the process is running on, just by telling it in the package.json
 // This way, node will check if there is any specified port in the package.json and set it up to 8000 otherwise  
 const PORT = process.env.PORT || 8000;
@@ -12,6 +15,9 @@ const server = http.createServer(app);
 // Express is basically just a middleware on the top of the node http server
 // Otherwise we will have to put the server itself to listen for request with the .on function that we have previously covered in http section
 // Recall that this .on function would take care of requests and responses as follows: server.on('request', callback_function) where request is the event we are listening for and the callback function will take the req and res as arguments;
+
+// load the planets data before starting the server
+await loadPlanetsData();
 
 server.listen(PORT, () => 
     console.log(`Listening on port ${PORT}...`)
