@@ -17,8 +17,12 @@ const server = http.createServer(app);
 // Recall that this .on function would take care of requests and responses as follows: server.on('request', callback_function) where request is the event we are listening for and the callback function will take the req and res as arguments;
 
 // load the planets data before starting the server
-await loadPlanetsData();
+async function startServer() {
+    await loadPlanetsData();
+    
+    server.listen(PORT, () => 
+        console.log(`Listening on port ${PORT}...`)
+    )
+}
 
-server.listen(PORT, () => 
-    console.log(`Listening on port ${PORT}...`)
-)
+startServer();

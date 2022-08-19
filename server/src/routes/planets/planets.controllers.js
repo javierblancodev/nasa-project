@@ -1,4 +1,4 @@
-const planets = require('../../models/planets.model');
+const { planets } = require('../../models/planets.model');
 
 function getAllPlanets(req, res) {
     // EXpress does not use the return keyword, only the response part, however, though optional, it is a good idea to include it to prevent unexpected bugs.
