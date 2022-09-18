@@ -3,8 +3,9 @@ const app = require('./app');
 
 const { loadPlanetsData } = require('./models/planets.model');
 
-// We can specify the port from the environment the process is running on, just by telling it in the package.json
+// We can specify the port from the environment the process is running on, just by telling it in the package.json for example, 
 // This way, node will check if there is any specified port in the package.json and set it up to 8000 otherwise  
+// Actually, the proces.env.PORT would be dynamically allocated from the web server provider like digital ocean or heroku
 const PORT = process.env.PORT || 8000;
 // console.log(PORT);
 
