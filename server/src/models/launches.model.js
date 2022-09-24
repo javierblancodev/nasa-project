@@ -2,6 +2,8 @@
 // 1. keys in maps are more flexible (can be a number, boolean or even a function)
 // 2. Every key-value order preserve the order the are set in
 
+const { httpGetAllLaunches } = require("../routes/launches/launches.controller");
+
 // Map
 const launches = new Map();
 
@@ -23,6 +25,10 @@ launches.set(launch.flightNumber, launch);
 // Map uses the reserved keyword get to retrieve an entries from the map
 // launches.get(100);
 
+function getAllLaunches() {
+    return Array.from(launches.values());
+}
+
 module.exports = {
-    launches
+    getAllLaunches
 }
