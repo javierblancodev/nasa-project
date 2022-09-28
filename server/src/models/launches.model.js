@@ -4,6 +4,8 @@
 
 const { httpGetAllLaunches } = require("../routes/launches/launches.controller");
 
+let latestFlightNumber = 100
+
 // Map
 const launches = new Map();
 
@@ -22,6 +24,19 @@ const launch = {
 // Map uses the reserved keyword set to add new entries to the map
 launches.set(launch.flightNumber, launch);
 
+function addNewLaunch(launch) {
+    // increase the latest flight number recorded by 1
+    latestFlightNumber++;
+    // set the new launch into the collection/map of launches
+    // the first parameter is the flight number and the second is the launch object where the fligh number must first to be assigned to (object assign do exactly this: it takes the second argument - the new property - and assign it to the first argument - the launch)
+    launches.set(latestFlightNumber, Object.assign(launch, {
+        flightNumber: latestFlightNumber,
+        customers: [ZTM, NASA],
+        upcoming: true,
+        success: true
+    }))
+}
+
 // Map uses the reserved keyword get to retrieve an entries from the map
 // launches.get(100);
 
@@ -30,5 +45,6 @@ function getAllLaunches() {
 }
 
 module.exports = {
-    getAllLaunches
+    getAllLaunches,
+    addNewLaunch
 }
