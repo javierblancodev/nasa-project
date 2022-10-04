@@ -2,8 +2,6 @@
 // 1. keys in maps are more flexible (can be a number, boolean or even a function)
 // 2. Every key-value order preserve the order the are set in
 
-const { httpGetAllLaunches } = require("../routes/launches/launches.controller");
-
 let latestFlightNumber = 100
 
 // Map
@@ -31,7 +29,7 @@ function addNewLaunch(launch) {
     // the first parameter is the flight number and the second is the launch object where the fligh number must first to be assigned to (object assign do exactly this: it takes the second argument - the new property - and assign it to the first argument - the launch)
     launches.set(latestFlightNumber, Object.assign(launch, {
         flightNumber: latestFlightNumber,
-        customers: [ZTM, NASA],
+        customers: ['ZTM', 'NASA'],
         upcoming: true,
         success: true
     }))
