@@ -12,6 +12,31 @@ function httpGetAllLaunches(req, res) {
 function httpAddNewLaunch(req, res) {
     const launch = req.body;
 
+    // Check for any field missing
+    if (!launch.mission || !launch.rocket || !launch.launchDate || !launch.target) {
+        return res.status(400).json({
+            error: 'Missing required launch property'
+        });
+    }
+
+    // Check for a valid date
+    launch.launchDate = new Date(launch.launchDate);
+    
+    //Option 1:
+    if(launch.launchDate.toString() === 'Invalid Date') {
+        return res.status(400).json({
+            error: 'Invalid launch date'
+        })
+    }
+
+    //Option 2:
+    // if(isNaN(launch.launchDate)) { // new Date is tried to be converted into a number, which is the timestamp from 1970
+    //     res.status(400).json({
+    //         error: 'Invalid launch date'
+    //     })
+    // }
+
+
     // Convert whatever datatype for date we get from the request into a date object
     launch.launchDate = new Date(launch.launchDate)
 
